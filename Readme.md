@@ -1,1 +1,1 @@
-# Baekjoon-algorithm
+# BOJ-Algorithm
