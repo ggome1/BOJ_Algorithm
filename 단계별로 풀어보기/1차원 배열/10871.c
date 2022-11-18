@@ -2,16 +2,16 @@
 
 int main()
 {
-    int n, scan, count=0;
+    int n, scan;
     
-    scanf("%d", &n);
+    scanf("%d %d", &n, &scan);
     int arr[n];
     for(int i=0; i<n; i++){
         scanf("%d", &arr[i]);
     }
-    scanf("%d", &scan);
+    
     for(int i=0; i<n; i++){
-        if(arr[i]==scan) count++;
+        if(arr[i]<scan) printf("%d ", arr[i]);
     }
-    printf("%d", count);
+    
 }
