@@ -1,29 +1,25 @@
 #include <stdio.h>
-
+int jud(int num);
 int main()
 {
-    int n, count = 0;
+    int n;
+    int count = 0;
     scanf("%d", &n);
-    for(int i=0; i<n; i++){
-        int jud;
-        int a=0;
-        scanf("%d", &jud);
-        if(jud/2 < 2){
-            if(jud!=1){
-                count++;
-            }
-        } 
-        else {
-            for(int j = 2; j<jud/2; j++){
-                if(jud%j!=0){
-                    
-                } 
-            }
-        }
-        if(a==0) count++;
+    int i = -1;
+    int num;
+    while(++i < n){
+        scanf("%d", &num);
+        count+=jud(num);
     }
-    printf("%d", count);
+    printf("%d\n", count);
 }
 
-// https://jm-park.github.io/algorithm/2018/08/06/Prime-Number(%EC%86%8C%EC%88%98)-%ED%8C%90%EB%B3%84%EB%B2%95-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.html
-// 다시 해봐요!
+int jud(int num){
+    if(num <= 1) return 0; // 1 이하면 소수 x
+    if(num == 2) return 1; // 2라면 소수
+    if(num % 2 == 0) return 0; // 2의 배수면 소수 x
+    for(int i = 3; i*i <= num; i+=2){ // 홀수라면 3부터 그 수의 루트 씌운 값 까지
+        if(num % i == 0) return 0;    // 그 수와 나누어 떨어지면 소수 x
+    }
+    return 1; // 나머지 소수
+}
