@@ -15,12 +15,13 @@ int main(){
     scanf("%d", &arr[i]);
   }
 
-  
+  int ans[1000001];
   ms(arr, 0, n-1);
   
-  
-  for(i=0; i<n; i++){
-    printf("%d\n", arr[i]);
+  ans[0] = arr[0];
+  for(i=1; i<n; i++){
+    if(arr[i] != arr[i-1])
+    ans[i] = arr[i];
   }
   free(arr);
   return 0;
