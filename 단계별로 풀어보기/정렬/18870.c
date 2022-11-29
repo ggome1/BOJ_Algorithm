@@ -2,28 +2,58 @@
 #include <stdlib.h>
 
 #define MAX_SIZE 1000001
+
 void merge(int *arr, int left, int middle, int right);
+
 void ms(int *arr, int left, int right);
+
+int unique(int* arr, int size) {
+	int i, j = 0;
+	for (i = 1; i < size;i++) {
+		if (arr[j] == arr[i]) continue;
+		arr[++j] = arr[i];
+	}
+	return ++j;
+}
+
+int binarysearch(int* arr, int size, int key) {
+	int left = 0, right = size - 1, mid;
+	while (left <= right) {
+		mid = (left + right) / 2;
+		if (arr[mid] < key) left = mid + 1;
+		else if (arr[mid] > key) right = mid - 1;
+		else return mid;
+ 	}
+}
 
 int main(){
   int i = -1;
   
   int n;
   scanf("%d", &n);
-  int *arr = (int *)malloc(sizeof(int) * n);
+  int *arr1 = (int *)malloc(sizeof(int) * n);
+  int *arr2 = (int *)malloc(sizeof(int) * n);
   while(++i < n){
-    scanf("%d", &arr[i]);
+    scanf("%d", &arr1[i]);
+    arr2[i] = arr1[i];
   }
 
-  int ans[1000001];
-  ms(arr, 0, n-1);
   
-  ans[0] = arr[0];
-  for(i=1; i<n; i++){
-    if(arr[i] != arr[i-1])
-    ans[i] = arr[i];
+  
+  ms(arr2, 0, n-1);
+  
+  int count = unique(arr2, n);
+
+  i = -1;
+  while(++i < n)
+  {
+    int ans = binarysearch(arr2, count, arr1[i]);
+    printf("%d ", ans);
   }
-  free(arr);
+  
+
+  free(arr1);
+  free(arr2);
   return 0;
 }
 
