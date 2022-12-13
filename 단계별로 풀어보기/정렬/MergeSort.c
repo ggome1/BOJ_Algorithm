@@ -5,7 +5,8 @@
 void merge(int *arr, int left, int middle, int right);
 void ms(int *arr, int left, int right);
 
-int main(){
+int main()
+{
   int i = -1;
   
   int n;
@@ -19,7 +20,8 @@ int main(){
   ms(arr, 0, n-1);
   
   
-  for(i=0; i<n; i++){
+  for(i=0; i<n; i++)
+  {
     printf("%d\n", arr[i]);
   }
   free(arr);
@@ -32,22 +34,29 @@ void merge(int *arr, int left, int middle, int right)
     int j = middle + 1;
     int k = 0;
     int *sort = (int *)malloc(sizeof(int) * (right - left +1));
-    while(i <= middle && j <= right){
-        if(arr[i] <= arr[j]){
+    while(i <= middle && j <= right)
+    {
+        if(arr[i] <= arr[j])
+        {
             sort[k++] = arr[i++];
         }
-        else{
+        else
+        {
             sort[k++] = arr[j++]; 
         }
     }
 
-    if(i > middle){
-        for(int t = j; t <= right; t++){
+    if(i > middle)
+    {
+        for(int t = j; t <= right; t++)
+        {
             sort[k++] = arr[t];
         }
     }
-    else{
-        for(int t = i; t <= middle; t++){
+    else
+    {
+        for(int t = i; t <= middle; t++)
+        {
             sort[k++] = arr[t];
         }
     }
@@ -60,7 +69,8 @@ void merge(int *arr, int left, int middle, int right)
 
 void ms(int *arr, int left, int right)
 {
-    if(left < right){
+    if(left < right)
+    {
         int middle = (left + right) / 2;
         ms(arr, left, middle);
         ms(arr, middle + 1, right);
