@@ -1,34 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct
 {
-    char    name[10001];
+    char    name[501];
 }charraw;
 
 int count = 0;
 
 int static compare (const void* first, const void* second)
 {
-    if (*(int*)first > *(int*)second)
-        return 1;
-    else if (*(int*)first < *(int*)second)
-        return -1;
-    else
-        return 0;
+    charraw *pf = (charraw*)first;
+    charraw *ps = (charraw*)second;
+    return strcmp(pf->name, ps->name);
 }
 
 int binarysearch(charraw* arr, int size, char* key) 
 {
 	int left = 0, right = size - 1, mid;
+    int sum = 0;
 	while (left <= right) 
     {
 		mid = (left + right) / 2;
-		if (arr[mid].name < key) left = mid + 1;
-		else if (arr[mid].name > key) right = mid - 1;
+		if (strcmp(arr[mid].name, key) < 0) left = mid + 1;
+		else if (strcmp(arr[mid].name, key) > 0) right = mid - 1;
 		else
         {
-            count++;
             return 1;
         } 
  	}
@@ -49,19 +47,13 @@ int main()
     i = -1;
     while(++i < m)
         scanf("%s", c_raw2[i].name);
-    
-    int c_raw_size = sizeof(c_raw2) / sizeof(c_raw2[0]);
 
-    qsort(c_raw2, c_raw_size, sizeof(c_raw2[0]), compare);
+    qsort(c_raw1, n, sizeof(c_raw1[0]), compare);
     i = -1;
     while(++i < m)
     {
-        printf("--%s\n", c_raw2[i].name);
-    }
-    i = -1;
-    while(++i < n)
-    {
-        binarysearch(c_raw2, sizeof(c_raw2), c_raw1[i].name);
+        count += binarysearch(c_raw1, n, c_raw2[i].name);
     }
     printf("%d\n", count);
 }
+
