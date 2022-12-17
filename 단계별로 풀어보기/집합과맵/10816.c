@@ -1,6 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+int lower_bound(int* arr, int key, int size)
+{
+    int first;
+    int end;
+    first = 0;
+    end = size - 1;
+
+    while(first < end)
+    {
+        int mid;
+        mid = (first + end) / 2;
+        if(arr[mid] >= key) end = mid;
+        else first = mid + 1;
+    }
+    return end;
+}
+
+int upper_bound(int* arr, int key, int size)
+{
+    int first;
+    int end;
+    first = 0;
+    end = size - 1;
+
+    while(first < end)
+    {
+        int mid;
+        mid = (first + end) / 2;
+        if(arr[mid] > key) end = mid;
+        else first = mid + 1;
+    }
+    if(arr[end] == key)
+    {
+        end++;
+    }
+    return end;
+}
+
 int static compare (const void* first, const void* second)
 {
     if (*(int*)first > *(int*)second)
@@ -22,39 +61,7 @@ int binarysearch(int* arr, int size, int key)
 		else if (arr[mid] > key) right = mid - 1;
 		else
         {
-            int i;
-            int j;
-            int lower = 0;
-            int upper = 0;
-            i = -1;
-            j = size;
-            
-            while(++i < mid)
-            {
-                if(arr[i] == key)
-                {
-                    lower = i;
-                }
-                break;
-            }
-            while(--j > mid)
-            {
-                if(arr[j] == key)
-                {
-                    upper = j;
-                }
-                break;
-            }
-            if(upper == lower)
-            {
-                sum = 1;
-            }
-            else
-            {
-                sum = upper - lower + 1;
-            }
-            
-            return sum;
+           return 1; 
         } 	
     }
     return 0;
@@ -85,7 +92,7 @@ int main()
     i = -1;
     while(++i < m)
     {
-        printf("%d ", binarysearch(card, card_size, find[i]));
+        printf("%d ", upper_bound(card, find[i], n) - lower_bound(card, find[i], n));
     }
     printf("\n");
     return 0;
