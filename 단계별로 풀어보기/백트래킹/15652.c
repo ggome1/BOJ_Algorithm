@@ -6,7 +6,7 @@ int arr[9];
 int n;
 int m;
 
-void bt(int cnt) {
+void bt(int cnt, int k) {
     int i;
     i = -1;
     if(cnt == m)
@@ -19,16 +19,11 @@ void bt(int cnt) {
         return;
     }
 
-    i = 0;
+    i = k - 1;
     while(++i <= n)
     {
-        if(visited[i] != 1)
-        {
-            arr[cnt] = i;
-            visited[i] = 1;
-            bt(cnt + 1);
-            visited[i] = 0;
-        }
+        arr[cnt] = i;
+        bt(cnt + 1, i);
     }
     
 }
@@ -36,6 +31,6 @@ void bt(int cnt) {
 int main(void) 
 {
 	scanf("%d %d", &n, &m);
-    bt(0);
+    bt(0, 1);
     return (0);
 }

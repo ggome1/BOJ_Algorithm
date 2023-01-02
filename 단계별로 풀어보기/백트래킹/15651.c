@@ -22,13 +22,8 @@ void bt(int cnt) {
     i = 0;
     while(++i <= n)
     {
-        if(visited[i] != 1)
-        {
-            arr[cnt] = i;
-            visited[i] = 1;
-            bt(cnt + 1);
-            visited[i] = 0;
-        }
+        arr[cnt] = i;  
+        bt(cnt + 1); 
     }
     
 }
