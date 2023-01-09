@@ -27,34 +27,34 @@ int binarysearch(int* arr, int size, int key) {
 }
 
 int main(){
-  int i = -1;
-  
-  int n;
-  scanf("%d", &n);
-  int *arr1 = (int *)malloc(sizeof(int) * n);
-  int *arr2 = (int *)malloc(sizeof(int) * n);
-  while(++i < n){
-    scanf("%d", &arr1[i]);
-    arr2[i] = arr1[i];
-  }
+    int i = -1;
+    
+    int n;
+    scanf("%d", &n);
+    int *arr1 = (int *)malloc(sizeof(int) * n);
+    int *arr2 = (int *)malloc(sizeof(int) * n);
+    while(++i < n){
+        scanf("%d", &arr1[i]);
+        arr2[i] = arr1[i];
+    }
 
-  
-  
-  ms(arr2, 0, n-1);
-  
-  int count = unique(arr2, n);
+    
+    
+    ms(arr2, 0, n-1);
+    
+    int count = unique(arr2, n);
 
-  i = -1;
-  while(++i < n)
-  {
-    int ans = binarysearch(arr2, count, arr1[i]);
-    printf("%d ", ans);
-  }
-  
+    i = -1;
+    while(++i < n)
+    {
+        int ans = binarysearch(arr2, count, arr1[i]);
+        printf("%d ", ans);
+    }
+    
 
-  free(arr1);
-  free(arr2);
-  return 0;
+    free(arr1);
+    free(arr2);
+    return 0;
 }
 
 void merge(int *arr, int left, int middle, int right)
